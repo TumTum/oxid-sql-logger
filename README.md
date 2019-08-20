@@ -1,15 +1,15 @@
 Oxid eShop SQL Logger
 ---------------------
 
-Returns all SQL queries into console of a browser.
+Returns all SQL queries into console of a Browser.
 
 ## Install
 
-composer require --dev tumtum/oxid-sql-logger
+`composer require --dev tumtum/oxid-sql-logger`
 
 ## Usage
 
-Just set the function StartSQLLog() somewhere and from that point on all SQLs will be logged.
+Just set the function `StartSQLLog()` somewhere and from that point on all SQLs will be logged.
 
 ```php
 \StartSQLLog();
@@ -23,5 +23,5 @@ $list = $db->getAll('SELECT * FROM oxarticles WHERE oxprice < ? LIMIT 100', [49.
 ## Screenshots
 
 ![Example all sqls](https://raw.githubusercontent.com/TumTum/oxid-sql-logger/master/img/screenshot-a.jpg)
-![Example only one range](https://raw.githubusercontent.com/TumTum/oxid-sql-logger/master/img/screenshot-b.jpg)
+![Example only one range](https://raw.githubusercontent.com/TumTum/oxid-sql-logger/master/img/screenshot-b.png)
 
