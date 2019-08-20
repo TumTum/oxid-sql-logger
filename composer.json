@@ -1,0 +1,23 @@
+{
+    "name": "tumtum/oxid-sql-logger",
+    "description": "Returns all SQL queries in the browser.",
+    "type": "library",
+    "require": {
+        "monolog/monolog": "^1"
+    },
+    "license": "GPL-3.0",
+    "autoload": {
+        "psr-4": {
+            "tm\\oxid\\sql\\logger\\": "./src"
+        },
+        "files": [
+            "./src/functions.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Tobias Matthaiou",
+            "email": "developer@tobimat.eu"
+        }
+    ]
+}
