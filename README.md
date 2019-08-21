@@ -22,6 +22,12 @@ $list = $db->getAll('SELECT * FROM oxarticles WHERE oxprice < ? LIMIT 100', [49.
 
 ## Screenshots
 
+Browser:
+
 ![Example all sqls](https://raw.githubusercontent.com/TumTum/oxid-sql-logger/master/img/screenshot-a.jpg)
 ![Example only one range](https://raw.githubusercontent.com/TumTum/oxid-sql-logger/master/img/screenshot-b.png)
+
+CLI:
+
+![Example CLI](https://raw.githubusercontent.com/TumTum/oxid-sql-logger/master/img/screenshot-cli.png)
 
