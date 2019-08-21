@@ -22,18 +22,7 @@ class OxidSQLLogger implements SQLLogger
     public function __construct()
     {
         if (!Monolog\Registry::hasLogger('sql')) {
-            Monolog\Registry::addLogger(
-                new Monolog\Logger(
-                    'sql',
-                    [
-                        new Monolog\Handler\BrowserConsoleHandler(),
-                    ],
-                    [
-                        new Monolog\Processor\IntrospectionProcessor(Monolog\Logger::DEBUG, ['tm\\oxid\\sql\\logger', 'Doctrine\\DBAL\\Connection', 'OxidEsales\\EshopCommunity\\Core\\Database\\Adapter\\Doctrine\\Database']),
-                        new Monolog\Processor\PsrLogMessageProcessor(),
-                    ]
-                )
-            );
+            Monolog\Registry::addLogger((new LoggerFactory())->create('sql'));
         }
     }
 
