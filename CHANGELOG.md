@@ -6,9 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-10-01
+
 ### Added
 
-- Measures the sql execution time
+- Measures the SQL execution time
 - Testing framework [phpspec](https://www.phpspec.net/en/stable/manual/introduction.html)
 
 ## [1.0.0] - 2019-07-21
