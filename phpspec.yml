@@ -1,0 +1,4 @@
+suites:
+  default:
+    namespace: "tm\\oxid\\sql\\logger\\"
+    psr4_prefix: "tm\\oxid\\sql\\logger\\"
