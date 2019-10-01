@@ -17,6 +17,11 @@ use Monolog;
 class OxidSQLLogger implements SQLLogger
 {
     /**
+     * @var SQLQuery
+     */
+    private $SQLQuery = null;
+
+    /**
      * @inheritDoc
      */
     public function __construct()
@@ -31,7 +36,14 @@ class OxidSQLLogger implements SQLLogger
      */
     public function startQuery($sql, array $params = null, array $types = null)
     {
-        Monolog\Registry::sql()->addDebug($sql, ['params' => $params, 'types' => $types]);
+        if ($this->SQLQuery) {
+            $this->SQLQuery->setCanceled();
+            $this->stopQuery();
+        }
+
+        $this->SQLQuery = (new SQLQuery()) ->setSql($sql)
+                                            ->setParams($params)
+                                            ->setTypes($types);
     }
 
     /**
@@ -39,5 +51,17 @@ class OxidSQLLogger implements SQLLogger
      */
     public function stopQuery()
     {
+        if ($this->SQLQuery) {
+            Monolog\Registry::sql()->addDebug(
+                '['.$this->SQLQuery->getReadableElapsedTime().'] ' . $this->SQLQuery->getSql(),
+                [
+                    'params' => $this->SQLQuery->getParams(),
+                    'time' => $this->SQLQuery->getElapsedTime(),
+                    'types' => $this->SQLQuery->getTypes(),
+                ]
+            );
+        }
+
+        $this->SQLQuery = null;
     }
 }
