@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - 7.0
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer install
+
+script:
+  - php ./vendor/bin/phpspec run --format=pretty --stop-on-failure --no-code-generation
+
+

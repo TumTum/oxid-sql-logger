@@ -1,6 +1,8 @@
 Oxid eShop SQL Logger
 ---------------------
 
+[![Build Status](https://travis-ci.org/TumTum/oxid-sql-logger.svg?branch=master)](https://travis-ci.org/TumTum/oxid-sql-logger)
+
 Returns all SQL queries into console of a Browser.
 
 ## Install
