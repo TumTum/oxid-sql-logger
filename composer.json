@@ -5,6 +5,11 @@
     "require": {
         "monolog/monolog": "^1"
     },
+    "require-dev": {
+        "phpspec/phpspec": "^4",
+        "doctrine/dbal": "^2.5",
+        "bovigo/assert": "^2"
+    },
     "license": "GPL-3.0",
     "autoload": {
         "psr-4": {
