@@ -4,8 +4,10 @@
  * Date: 2019-08-21
  * Time: 07:50
  */
+
 namespace tm\oxid\sql\logger;
 
+use Gelf;
 use Monolog;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
@@ -35,6 +37,11 @@ class LoggerFactory
         } else {
             $handlers[] = $this->getBrowserConsoleHandler();
         }
+
+        if (Config\GrayLog::isEnableGrayLog()) {
+            $handlers[] = $this->getGrayLogHandler();
+        }
+
         return $handlers;
     }
 
@@ -45,11 +52,11 @@ class LoggerFactory
     {
         $streamHandler = new Monolog\Handler\StreamHandler('php://stderr');
 
-        $channel    = (new OutputFormatterStyle(null, null, ['bold']))->apply('%channel%');
+        $channel = (new OutputFormatterStyle(null, null, ['bold']))->apply('%channel%');
         $level_name = (new OutputFormatterStyle('blue'))->apply('%level_name%');
-        $message    = (new OutputFormatterStyle('green'))->apply('%message%');
-        $context    = (new OutputFormatterStyle('yellow'))->apply('%context%');
-        $newline    = PHP_EOL . str_repeat(' ', 10);
+        $message = (new OutputFormatterStyle('green'))->apply('%message%');
+        $context = (new OutputFormatterStyle('yellow'))->apply('%context%');
+        $newline = PHP_EOL . str_repeat(' ', 10);
 
         $ttl_color = "$channel $level_name: $message {$newline} $context {$newline} %extra%" . PHP_EOL;
 
@@ -64,6 +71,22 @@ class LoggerFactory
     private function getBrowserConsoleHandler()
     {
         return new Monolog\Handler\BrowserConsoleHandler();
+    }
+
+    /**
+     * @return Monolog\Handler\GelfHandler
+     */
+    private function getGrayLogHandler()
+    {
+        $udpTransport = new Gelf\Transport\UdpTransport(
+            Config\GrayLog::getHost(),
+            Config\GrayLog::getPort(),
+            Gelf\Transport\UdpTransport::CHUNK_SIZE_LAN
+        );
+
+        $publisher = new Gelf\Publisher($udpTransport);
+
+        return new Monolog\Handler\GelfHandler($publisher);
     }
 
     /**

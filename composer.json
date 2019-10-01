@@ -3,7 +3,8 @@
     "description": "Returns all SQL queries in the browser.",
     "type": "library",
     "require": {
-        "monolog/monolog": "^1"
+        "monolog/monolog": "^1",
+        "graylog2/gelf-php": "*"
     },
     "require-dev": {
         "phpspec/phpspec": "^4",
