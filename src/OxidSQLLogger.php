@@ -58,6 +58,7 @@ class OxidSQLLogger implements SQLLogger
                     'params' => $this->SQLQuery->getParams(),
                     'time' => $this->SQLQuery->getElapsedTime(),
                     'types' => $this->SQLQuery->getTypes(),
+                    'sameSQLs' => md5($this->SQLQuery->getSql()),
                 ]
             );
         }
