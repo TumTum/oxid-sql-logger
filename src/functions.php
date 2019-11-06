@@ -12,3 +12,5 @@ function StartSQLLog() {
 function StopSQLLog() {
     \tm\oxid\sql\logger\OxidEsalesDatabase::disableLogger();
 }
+
+(new tm\oxid\sql\logger\AutoInstallSmaryPlugin())->runInstall();
